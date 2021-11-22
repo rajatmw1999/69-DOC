@@ -1,28 +1,30 @@
 const express = require('express');
 const app = express();
 
-const myMiddleWare = async(req, res, next) => {
-    console.log("MCU Superheroes");
-    next();
+
+const myMiddleWare = (req, res, next) => {
+    if(req.query.name == 'Guddu')
+    {
+        console.log("first middleware")
+        next();
+    }
+    else{
+        return res.send({"message":"Who are you?? I need Guddu!"});
+    }
 }
 
-// app.use(myMiddleWare);
-app.use('/:name', myMiddleWare);
+app.use(myMiddleWare);
 
 app.get('/', async(req, res) => {
-    return res.send("Hello World");
+    console.log("/ route");
+    return res.send({"message":"Hello Cruel World"});
 });
 
-app.get('/tom-holland', async(req, res) => {
-    console.log("Route");
-    return res.send("Welcome to Tom Holland");
+app.get('/mirzapur',async(req, res) => {
+    console.log("Inside mirzapur");
+    return res.send({"message":"Hello Guddu Bhaiya"});
 });
 
-app.get('/robert-downey', async(req, res) => {
-    console.log("Route");
-    return res.send("Welcome to Robert Downey");
-});
-
-app.listen(3000, function(req, res){
-    console.log("Server is live");
-});
+app.listen(6969, function(){
+    console.log("server is running like usain bolt");
+})
