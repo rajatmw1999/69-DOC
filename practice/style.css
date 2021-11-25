@@ -1,0 +1,29 @@
+/* h1 {
+    color: red;
+} */
+
+body {
+    background-color: aqua;
+}
+
+.welcome_arjun_class {
+    color: purple;
+}
+
+.welcome_rajat_class {
+    color: darkred;
+}
+
+#welcome_guddu_id {
+    color: black;
+}
+
+#span_1 {
+    color: darkblue;
+    font-size: 30px;
+}
+
+#span_2 {
+    color: darkorange;
+    font-size: 6px;
+}
