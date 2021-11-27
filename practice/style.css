@@ -7,6 +7,7 @@ body {
 }
 
 .welcome_arjun_class {
+    margin-left: 100px;
     color: purple;
 }
 
@@ -26,4 +27,25 @@ body {
 #span_2 {
     color: darkorange;
     font-size: 6px;
+}
+
+#border_h3 {
+    border-style: solid;
+    border-width: 20px;
+    /* border-color: darkred; */
+    border-top-color: darkred;
+    border-bottom-color: darksalmon;
+    border-right-color: pink;
+    border-left-color: purple;
+}
+
+hr {
+    border-style: dotted;
+    border-width: 10px;
+    border-bottom: hidden;
+}
+
+p {
+    margin-top: 200px;
+    margin-bottom: 200px;
 }

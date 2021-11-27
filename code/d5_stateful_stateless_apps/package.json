@@ -1,0 +1,15 @@
+{
+  "name": "d5_stateful_stateless_apps",
+  "version": "1.0.0",
+  "description": "- https://www.youtube.com/watch?v=nFPzI_Qg3FU (Theory)\r - https://www.youtube.com/watch?v=mbsmsi7l3r4&ab_channel=WebDevSimplified (Implementation)\r - https://medium.com/@kennch/stateful-and-stateless-authentication-10aa3e3d4986 (Comparison of both !important*)\r - https://youtu.be/iD49_NIQ-R4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
