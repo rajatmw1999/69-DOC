@@ -1,0 +1,16 @@
+.container{
+    background-color: grey;
+    border: 10px solid black;
+    height: 94vh;
+    width: 192vh;
+    display: flex;
+}
+
+.item{
+    background-color: pink;
+    border: 5px solid black;
+    height: 70vh;
+    width: 80vh;
+    margin-top: 70px;
+    margin-left: 50px;
+}
