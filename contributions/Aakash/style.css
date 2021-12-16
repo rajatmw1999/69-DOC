@@ -1,0 +1,41 @@
+.text1{
+  color:aqua;
+  transition: font-size 2s;
+}
+.text1:hover {
+  font-size:50px;
+}
+.text2{
+  color:orange;
+  transition: font-size 2s,transform 2s;
+}
+.text2:hover {
+  font-size:50px;
+  transform: rotate(10deg);
+}
+.text3{
+  color:blue;
+  transition: font-size 2s,transform 2s,color 2s;
+}
+.text3:hover {
+  font-size:50px;
+  transform: rotate(10deg);
+  color:darkgoldenrod;
+}
+.text4{
+  color:blue;
+  transition: font-size 4s,transform 4s
+}
+.text4:active {
+  font-size:50px;
+  transform: rotate(30deg) translate(50px,100px);
+}
+.text5{
+  color:red;
+  transition: font-size 2s,transform 2s,font-family 2s;
+}
+.text5:active {
+  font-size:50px;
+  transform:translate(50px,100px);
+  font-family:'Courier New', Courier, monospace;
+}
