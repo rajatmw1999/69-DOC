@@ -1,0 +1,23 @@
+.flex-container{
+    display:flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.item1{
+    width:500px;
+    height:90vh;
+    background: chocolate;
+    text-align: center;
+}
+
+.item2{
+    width:500px;
+    height:90vh;
+    background: coral;
+}
+
+.item2 p{
+    margin:20px
+}
