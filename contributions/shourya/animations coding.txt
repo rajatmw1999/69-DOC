@@ -1,0 +1,62 @@
+<html>
+  <head>
+    ANIMATIONS
+  </head>
+  <body>
+    <div id="one"></div>
+    <br>
+     <div id="two"></div>
+    <br>
+     <div id="three"></div>
+    <br>
+     <div id="four"></div>
+    <br>
+  </body>
+</html>
+
+
+div
+{
+  height:150px;
+  width:150px;
+}
+
+#one:hover
+{
+  transform:rotate(30deg) translate(800px,-430px);
+}
+
+#two:hover
+{
+  transform:rotate(30deg) translate(1500px,-800px);
+}
+
+#three:hover
+{
+  transform:rotate(-30deg) translate(800px,450px);
+}
+
+#four:hover
+{
+  transform:rotate(-30deg) translate(1500px,850px);
+}
+
+#one
+{
+  background:magenta;
+}
+
+#two
+{
+  background:red;
+}
+
+#three
+{
+  background:orange;
+}
+
+#four
+{
+  background:yellow;
+}
