@@ -1,24 +1,32 @@
 const express = require('express')
-const jwt = require('jsonwebtoken')
 const app = express()
+const jwt = require('jsonwebtoken')
 
 app.get('/', async (req, res) => {
   res.send('Hello')
 })
 
-app.get('/jwt', async (req, res) => {
-  const username = 'Mohil'
-  const token = jwt.sign({ username: username, exp: Math.floor(Date.now() / 1000) + (20) }, 'RAJATMOHILSECRET')
-  res.send(String(token))
+app.get('/login/:username/:password', async (req, res) => {
+  const { username, password } = req.params
+  console.log(username, password)
+  if (username == 'mat' && password == 'dragon') {
+    const token = jwt.sign({ username: 'mat', exp: (Math.floor(Date.now()/1000) + 20) }, 'MATCOUTHON')
+    return res.send({ message: 'Success', token: token })
+  }
+  return res.send('Failure')
 })
 
-app.get('/verify', async (req, res) => {
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1vaGlsIiwiZXhwIjoxNjQwNzc2MDQ0LCJpYXQiOjE2NDA3NzYwMjR9.OzzswkIGZ7366ttcoY8W-muaC5WteOx9LxSnW6pczUk'
-  console.log(token)
-  var decoded = jwt.verify(token, 'RAJATMOHILSECRET')
-  console.log(decoded) // bar
-  res.send(decoded)
+app.get('/verify/:token', async (req, res) => {
+  const { token } = req.params
+  var verify
+  try {
+    verify = jwt.verify(token, 'MATCOUTHON')
+  } catch (err) {
+    console.log('Token is incorrect')
+    res.send('Token is incorrect')
+  }
+  console.log(verify)
+  res.send(verify)
 })
 
 app.listen('6969', function () {
