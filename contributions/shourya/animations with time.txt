@@ -1,0 +1,23 @@
+ <div id="luv"></div>
+  
+
+#luv
+{
+  width:60px;
+  height:60px;
+  background:red;
+}
+
+@keyframes khushi
+{
+  from{}
+  to{transform:translate(900px,0px) rotate(8720deg) scale(2);
+  background:blue;}
+}
+
+#luv:active
+{
+  animation-name:khushi;
+  animation-duration:5s;
+  
+}
