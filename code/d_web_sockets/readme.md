@@ -1,0 +1,3 @@
+- https://www.youtube.com/watch?v=1BfCnjr_Vjg&ab_channel=Fireship
+- https://github.com/fireship-io/socketio-minimal-demo
+- https://www.youtube.com/watch?v=i5OVcTdt_OU&ab_channel=TechPrimers
