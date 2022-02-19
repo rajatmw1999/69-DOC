@@ -1,0 +1,24 @@
+Camera.fixObjectToCamera(Bazooka, -1, 0, -2)
+Camera.fixObjectToCamera(Gun, 1, 0, -2)
+Camera.fixObjectToCamera(First_gun, 0, -1, -2)
+
+
+Hatch.onKeyDown(function (event) {
+    //Your code goes here
+    if (event.key == 'i') {
+        Bazooka.setVisible(true)
+        Gun.setVisible(false)
+        First_gun.setVisible(false)
+    }
+    if (event.key == 'o') {
+        Bazooka.setVisible(false)
+        Gun.setVisible(true)
+        First_gun.setVisible(false)
+    }
+    if (event.key == 'p') {
+        Bazooka.setVisible(false)
+        Gun.setVisible(false)
+        First_gun.setVisible(true)
+    }
+
+});
