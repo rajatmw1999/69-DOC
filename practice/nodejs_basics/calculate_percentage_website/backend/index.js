@@ -1,10 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+
+//CORS
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 app.use(bodyParser.json())
 
 app.get('/', function(req, res) {
-    res.send('Your application is working on port 6969')
+    res.send({ 'message': 'Your application is working on port 6969' })
 })
 
 app.post('/calculate', function(req, res) {
@@ -25,6 +32,6 @@ app.post('/calculate', function(req, res) {
     res.send('Your percentage is ' + Math.round(percentage) + '%.')
 })
 
-app.listen(6969, function() {
+app.listen(process.env.PORT || 6969, function() {
     console.log('Server is running')
 })
