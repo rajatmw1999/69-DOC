@@ -19,6 +19,8 @@ myFirstPromise.then((successMessage) => {
 ```
 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+- Example of promises with loading images, https://github.com/mdn/js-examples/tree/master/promises-test
+
 
 ### Topics
  
