@@ -1,0 +1,4 @@
+- https://hackernoon.com/12-javascript-concepts-that-will-level-up-your-development-skills-b37d16ad7104
+- https://www.geeksforgeeks.org/7-javascript-concepts-that-every-developer-must-know/
+- https://github.com/leonardomso/33-js-concepts
+- https://www.udemy.com/course/advanced-javascript-concepts/
