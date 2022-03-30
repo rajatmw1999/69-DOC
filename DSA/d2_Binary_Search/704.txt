@@ -1,0 +1,26 @@
+https://leetcode.com/problems/binary-search/
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int length = nums.size();
+        int i=0,j=length-1;
+        int mid = (i+j)/2;
+        while(i<=j)
+        {
+            if(nums[mid] == target)
+                return mid;
+            else if(nums[mid] < target)
+            {
+                i = mid + 1;
+                mid = (i+j)/2;
+            }
+            else{
+                j = mid - 1;
+                mid = (i+j)/2;
+            }
+        }
+        return -1;
+        
+    }
+};
