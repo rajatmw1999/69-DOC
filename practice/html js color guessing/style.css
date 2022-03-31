@@ -1,0 +1,35 @@
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.game-wrapper {
+    margin: 0 auto;
+    width: 50%;
+    border: 2px solid silver;
+    text-align: center;
+}
+
+.game-data {
+    margin: 0;
+    padding: 0;
+    background-color: cyan;
+    display: flex;
+    justify-content: space-around;
+}
+
+.game-data .one{
+
+}
+
+.game-data .two{
+
+}
+
+.game-data .three{
+
+}
