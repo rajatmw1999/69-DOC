@@ -1,0 +1,13 @@
+//var name = "Arjun";
+//if (name == "Arjun")
+//console.log ("welcome Arjun")
+//else
+//console.log ("I dont know u")
+
+
+
+var rollno = 21;
+if (rollno == 21)
+console.log ("Welcome rollno 21")
+else
+console.log ("U are not rollno 21")
