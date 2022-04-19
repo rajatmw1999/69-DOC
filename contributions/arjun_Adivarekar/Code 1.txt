@@ -1,0 +1,12 @@
+//var marks = 60;
+//if (marks > 70)
+//console.log ("Grade A")
+//else
+//console.log ("Grade B")
+
+
+var age = 80
+if (age > 70)
+console.log ("Happy")
+else
+console.log ("Sad")
