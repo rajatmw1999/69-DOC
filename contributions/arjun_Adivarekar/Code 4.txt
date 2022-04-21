@@ -1,0 +1,4 @@
+async function respond(inputText) {
+		console.log("Search superheros");
+	var data = await CampK12.fetch("GET","https://akabab.github.io/superhero-api/api/all.json",data);
+for(var i=0; i<562; i=i+1) console.log(data[i]); }
