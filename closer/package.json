@@ -1,0 +1,23 @@
+{
+  "name": "closer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Closer — AI cold calling and sales communication training platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:preview": "vite build --config vite.preview.config.js && node -e \"require('fs').copyFileSync('dist-preview/index.html','preview.html')\""
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11",
+    "vite-plugin-singlefile": "^2.3.3"
+  }
+}

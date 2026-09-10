@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-preview
+*.log
+.DS_Store
+
+# Generated asset-embedded hero build (10MB+ data-URI blob; source is closer-hero.html)
+closer-hero-embedded.html
+
+# Generated versioned copies of the preview (delivery only; source builds to preview.html)
+closer-v*.html

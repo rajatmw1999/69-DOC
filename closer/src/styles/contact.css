@@ -1,0 +1,155 @@
+/* ─────────────────────────────────────────────────────────────
+   CLOSER · Contact hero (dark cinematic glass + speaking motif)
+   ───────────────────────────────────────────────────────────── */
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.animate-blink { animation: blink 1s step-end infinite; }
+
+.ct { position: relative; min-height: 100vh; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+
+/* Background video (right-anchored, cinematic) */
+.ct-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #0a0a0a; }
+.ct-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; opacity: 1; }
+.ct-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10,10,10,.95) 0%, rgba(10,10,10,.72) 38%, rgba(10,10,10,.10) 78%, rgba(10,10,10,.30) 100%),
+    linear-gradient(to top, rgba(10,10,10,.5), transparent 45%);
+}
+
+/* live badge over the head clip */
+.ct-livebadge {
+  position: absolute; z-index: 2; right: clamp(16px, 3vw, 40px); bottom: clamp(16px, 3vw, 36px);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px; font-size: 12.5px; color: #fff;
+  background: rgba(10,10,10,.42); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+
+/* cursor-reactivity hint — fades out after the first move */
+.ct-hint {
+  position: fixed; z-index: 3; left: 50%; bottom: 26px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; letter-spacing: .04em; color: rgba(255,255,255,.6);
+  padding: 8px 16px; border-radius: 999px;
+  background: rgba(10,10,10,.4); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  animation: hintpulse 2.4s ease-in-out infinite; transition: opacity .5s ease;
+}
+.ct-hint.gone { opacity: 0; pointer-events: none; }
+.ct-hint-arrows { color: var(--gold-bright); font-weight: 700; letter-spacing: .1em; }
+@keyframes hintpulse { 50% { opacity: .55; } }
+@media (max-width: 1023px) { .ct-hint { display: none; } }
+
+/* Navbar */
+.ct-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px clamp(20px, 4vw, 40px);
+  background: transparent;
+}
+.ct-logo { display: flex; align-items: center; gap: 10px; }
+.ct-logo b { font-size: clamp(21px, 2.4vw, 26px); font-weight: 500; letter-spacing: -.02em; color: #fff; }
+.ct-ast { font-size: 26px; color: var(--gold-bright); line-height: 0; margin-bottom: 4px; font-weight: 500; }
+.ct-links { display: flex; align-items: center; gap: 26px; }
+.ct-links a { font-size: 17px; color: rgba(255,255,255,.85); transition: opacity var(--t-fast); }
+.ct-links a:hover { opacity: .6; }
+.ct-cta-link { font-size: 17px; color: #fff; text-decoration: underline; text-underline-offset: 3px; transition: opacity var(--t-fast); }
+.ct-cta-link:hover { opacity: .6; }
+
+/* Content */
+.ct-main {
+  position: relative; z-index: 1;
+  max-width: 80rem; margin: 0 auto; width: 100%;
+  min-height: 100vh; padding: 128px clamp(24px, 5vw, 56px) 64px;
+  display: flex; align-items: center; gap: 48px;
+}
+.ct-content { flex: 1; min-width: 0; max-width: 680px; }
+
+.ct-h1 {
+  font-size: clamp(2.6rem, 6vw, 4.75rem); font-weight: 400; letter-spacing: -.03em;
+  line-height: 1.08; color: #fff; margin-bottom: 30px; white-space: pre-wrap; user-select: none;
+  text-shadow: 0 2px 20px rgba(0,0,0,.5); min-height: 2.2em;
+}
+.ct-cursor { display: inline-block; width: 3px; height: 1.05em; background: var(--gold-bright); vertical-align: middle; margin-left: 3px; }
+
+.ct-desc { font-size: clamp(16px, 1.4vw, 20px); color: rgba(255,255,255,.72); line-height: 1.65; margin-bottom: 48px; max-width: 42rem; }
+
+/* Service pills */
+.ct-service-title { font-size: clamp(20px, 2vw, 24px); font-weight: 600; letter-spacing: -.01em; margin-bottom: 4px; color: #fff; }
+.ct-service-sub { color: rgba(255,255,255,.55); margin-bottom: 26px; font-size: 14px; }
+.ct-pills { display: flex; flex-wrap: wrap; gap: 12px; }
+.ct-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 999px; font-size: 15px; font-weight: 500;
+  background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast), color var(--t-fast);
+}
+.ct-pill:hover { background: rgba(255,255,255,.12); }
+.ct-pill.on {
+  background: var(--gold-grad); color: var(--gold-ink); border-color: transparent;
+  box-shadow: 0 6px 22px -8px var(--gold-glow); transform: translateY(-1px);
+}
+.ct-pill-check { display: inline-flex; animation: pillpop .32s cubic-bezier(.32,1.4,.36,1) both; }
+@keyframes pillpop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* Contingent banner */
+.ct-banner-wrap { margin-top: 22px; min-height: 28px; }
+.ct-placeholder { opacity: .5; font-style: italic; font-size: 12px; color: rgba(255,255,255,.7); }
+.ct-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  background: rgba(255,255,255,.05); border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 16px 20px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  animation: bannerIn .4s var(--ease-out) both;
+}
+@keyframes bannerIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.ct-banner-text { display: flex; flex-direction: column; gap: 2px; }
+.ct-banner-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.ct-banner-text b { font-size: 16px; color: #fff; font-weight: 600; }
+.ct-go {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--gold-bright); text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: .08em;
+  transition: gap var(--t-fast), opacity var(--t-fast);
+}
+.ct-go:hover { gap: 10px; opacity: .85; }
+
+/* "Someone speaking" motif */
+.ct-speaking { flex-shrink: 0; width: 320px; }
+.ct-speaking-card {
+  border-radius: 20px; border: 1px solid var(--glass-border);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  padding: 22px; box-shadow: var(--shadow-2); display: flex; flex-direction: column; gap: 16px;
+}
+.ct-speaking-head { display: flex; align-items: center; gap: 9px; font-size: 13px; color: rgba(255,255,255,.8); font-weight: 500; }
+.ct-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #3ecf7a; box-shadow: 0 0 10px #3ecf7a; animation: pulse-dot 1.8s infinite; }
+.ct-speaking .waveform { margin: 4px 0; }
+.ct-speaking-cap { display: flex; flex-direction: column; gap: 3px; }
+.ct-speaking-name { font-size: 14px; font-weight: 600; color: #fff; }
+.ct-speaking-sub { font-size: 12.5px; color: var(--gold-bright); font-style: italic; }
+@keyframes pulse-dot { 50% { opacity: .4; } }
+
+/* Mobile menu */
+.ct-burger { display: none; }
+.ct-mobile { display: none; }
+@media (max-width: 900px) {
+  .ct-links, .ct-cta-link { display: none; }
+  .ct-burger { display: flex; flex-direction: column; gap: 6px; z-index: 20; }
+  .ct-burger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; }
+  .ct-burger span.open:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .ct-burger span.open:nth-child(2) { opacity: 0; }
+  .ct-burger span.open:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .ct-mobile {
+    position: fixed; inset: 0; z-index: 9; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 26px;
+    background: rgba(10,10,10,.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none; transition: opacity .4s ease;
+  }
+  .ct-mobile.show { opacity: 1; pointer-events: auto; }
+  .ct-mobile a { font-size: 24px; color: #fff; font-weight: 500; }
+}
+@media (max-width: 1023px) {
+  .ct-main { flex-direction: column; align-items: stretch; justify-content: center; }
+  .ct-speaking { width: 100%; max-width: 360px; }
+  .ct-video { object-position: center; opacity: .5; }
+}

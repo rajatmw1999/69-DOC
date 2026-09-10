@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Closer — Hero</title>
+
+  <!-- Google Fonts: Inter (UI/body) + Instrument Serif (Closer editorial headline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] } } },
+    }
+  </script>
+
+  <style>
+    html, body { height: 100%; }
+    body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: #000; }
+
+    /* ── Liquid glass ─────────────────────────────────────────── */
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        transparent 40%,
+        transparent 60%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel (JSX/TSX in the browser) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
+
+  <script type="text/babel" data-presets="typescript,react">
+    const { useState } = React
+
+    const VIDEO_SRC =
+      'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260715_082433_69699cf8-444b-4484-93cc-053e57896dfd.mp4'
+
+    const AVATARS: string[] = [
+      'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
+      'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100',
+      'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100',
+      'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=100',
+    ]
+
+    const NAV_LINKS = ['Home', 'The Method', 'Live Coaching']
+
+    type IconProps = React.SVGProps<SVGSVGElement>
+
+    /* ── Lucide-style line icons (Menu / X / CircleUserRound) ── */
+    const MenuIcon = (p: IconProps) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}
+           strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <line x1="4" y1="6" x2="20" y2="6" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="18" x2="20" y2="18" />
+      </svg>
+    )
+
+    const XIcon = (p: IconProps) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}
+           strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M6 6 L18 18" />
+        <path d="M18 6 L6 18" />
+      </svg>
+    )
+
+    const CircleUserRound = (p: IconProps) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}
+           strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="10" r="4" />
+        <path d="M6.2 18.6a6 6 0 0 1 11.6 0" />
+      </svg>
+    )
+
+    /* ── The theme: BRAIN (how you read people) + MOUTH (what you say) ── */
+    const BrainIcon = (p: IconProps) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}
+           strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M12 6.4v10.4" />
+        <path d="M12 6.9c-.8-1.6-3.3-1.8-4.5-.4-1.7-.3-3 1.2-2.7 2.8-1.3.9-1.3 2.9 0 3.9-.2 1.6 1.1 3.1 2.8 2.8.7 1.2 2.6 1.3 3.5.2" />
+        <path d="M12 6.9c.8-1.6 3.3-1.8 4.5-.4 1.7-.3 3 1.2 2.7 2.8 1.3.9 1.3 2.9 0 3.9.2 1.6-1.1 3.1-2.8 2.8-.7 1.2-2.6 1.3-3.5.2" />
+        <path d="M8.7 9.3c.9.2 1.5.9 1.6 1.8" />
+        <path d="M15.3 9.3c-.9.2-1.5.9-1.6 1.8" />
+      </svg>
+    )
+
+    // Speech bubble with a voice waveform inside = the spoken word (mouth).
+    const SpeechIcon = (p: IconProps) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}
+           strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M21 14.5a2 2 0 0 1-2 2H8l-4 3.5V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z" />
+        <path d="M8.5 9.6v3.2" />
+        <path d="M12 8.2v6" />
+        <path d="M15.5 9.6v3.2" />
+      </svg>
+    )
+
+    // Logo mark: a mini BRAIN inside a SPEECH bubble — mind + voice in one, in Closer gold.
+    const LogoMark = (p: IconProps) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="url(#closerGold)" strokeWidth={1.7}
+           strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <defs>
+          <linearGradient id="closerGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#f4dc95" />
+            <stop offset="0.5" stopColor="#cba24e" />
+            <stop offset="1" stopColor="#a17a2c" />
+          </linearGradient>
+        </defs>
+        <path d="M21 13.6a2 2 0 0 1-2 2h-7l-4 3.4V6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2z" />
+        <path d="M12.6 8.1v4" />
+        <path d="M12.6 8.5c-.5-.9-1.9-1-2.6-.2-.9-.2-1.7.7-1.5 1.6-.7.5-.7 1.6 0 2.1-.1.9.6 1.7 1.5 1.5.4.6 1.4.7 1.9.1" />
+        <path d="M12.6 8.5c.5-.9 1.9-1 2.6-.2.9-.2 1.7.7 1.5 1.6.7.5.7 1.6 0 2.1.1.9-.6 1.7-1.5 1.5-.4.6-1.4.7-1.9.1" />
+      </svg>
+    )
+
+    function App() {
+      const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
+      return (
+        <main className="relative flex h-screen w-full flex-col overflow-hidden text-white">
+          {/* Background video */}
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src={VIDEO_SRC}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+          />
+          {/* Legibility wash */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/30" />
+
+          {/* ── Navigation ─────────────────────────────────────── */}
+          <nav className="relative z-20 flex items-center justify-between px-5 pt-6 sm:px-8 sm:pt-8 md:px-16 lg:px-20">
+            {/* Left: logo + wordmark */}
+            <a href="#" className="flex items-center gap-2.5">
+              <LogoMark className="h-8 w-8 md:h-9 md:w-9" />
+              <span className="text-lg font-semibold tracking-tight text-white">Closer</span>
+            </a>
+
+            {/* Center: desktop nav pill */}
+            <div className="liquid-glass hidden items-center gap-8 rounded-full px-8 py-3 md:flex">
+              {NAV_LINKS.map((label, i) => (
+                <a
+                  key={label}
+                  href="#"
+                  className={
+                    'text-sm font-medium transition-opacity ' +
+                    (i === 0 ? 'text-white' : 'text-white/70 hover:opacity-100 hover:text-white')
+                  }
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+
+            {/* Right: desktop account circle */}
+            <div className="liquid-glass hidden h-10 w-10 items-center justify-center rounded-full md:flex">
+              <CircleUserRound className="h-5 w-5 text-white/80" />
+            </div>
+
+            {/* Right: mobile menu button */}
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              onClick={() => setMenuOpen((o) => !o)}
+              className="liquid-glass relative z-50 flex h-10 w-10 items-center justify-center rounded-full md:hidden"
+            >
+              <span
+                className={
+                  'absolute flex transition-all duration-300 ' +
+                  (menuOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100')
+                }
+              >
+                <MenuIcon className="h-5 w-5 text-white/85" />
+              </span>
+              <span
+                className={
+                  'absolute flex transition-all duration-300 ' +
+                  (menuOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0')
+                }
+              >
+                <XIcon className="h-5 w-5 text-white/85" />
+              </span>
+            </button>
+          </nav>
+
+          {/* ── Mobile menu overlay ────────────────────────────── */}
+          <div
+            className={
+              'fixed inset-0 z-10 flex flex-col items-center justify-center gap-8 bg-black/80 backdrop-blur-xl transition-opacity duration-500 ease-out md:hidden ' +
+              (menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0')
+            }
+          >
+            <div
+              className={
+                'flex flex-col items-center gap-8 transition-transform duration-500 ease-out ' +
+                (menuOpen ? 'translate-y-0' : '-translate-y-8')
+              }
+            >
+              {NAV_LINKS.map((label) => (
+                <a
+                  key={label}
+                  href="#"
+                  onClick={() => setMenuOpen(false)}
+                  className="text-2xl font-medium text-white"
+                >
+                  {label}
+                </a>
+              ))}
+              <div className="mt-2 flex flex-col items-center gap-3">
+                <div className="liquid-glass flex h-11 w-11 items-center justify-center rounded-full">
+                  <CircleUserRound className="h-5 w-5 text-white/80" />
+                </div>
+                <span className="text-sm font-light text-white/60">Account</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Main content ───────────────────────────────────── */}
+          <section
+            className={
+              'relative z-10 flex flex-1 flex-col justify-between px-5 pb-8 sm:px-8 sm:pb-10 md:px-16 lg:px-20 ' +
+              'transition-opacity duration-300 ' +
+              (menuOpen ? 'pointer-events-none opacity-0 md:pointer-events-auto md:opacity-100' : 'opacity-100')
+            }
+          >
+            {/* Top block */}
+            <div className="mt-14 max-w-2xl sm:mt-20 md:mt-28">
+              {/* Badge */}
+              <div className="liquid-glass mb-5 inline-flex items-center gap-2.5 rounded-full px-3 py-1.5 sm:mb-6 sm:gap-3 sm:px-4 sm:py-2">
+                <div className="flex -space-x-2">
+                  {AVATARS.map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt=""
+                      className="h-5 w-5 rounded-full border-2 border-white/20 object-cover sm:h-6 sm:w-6"
+                    />
+                  ))}
+                </div>
+                <span className="text-xs font-light text-white/80 sm:text-sm">where reps become closers</span>
+              </div>
+
+              {/* Heading — Closer editorial serif */}
+              <h1
+                className="text-4xl font-normal leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl"
+                style={{ fontFamily: '"Instrument Serif", Georgia, serif', letterSpacing: '-0.02em' }}
+              >
+                Master Every Word.
+                <br />
+                Read Every Mind.
+              </h1>
+
+              {/* Subtitle */}
+              <p className="mt-4 text-sm font-light text-white/70 sm:mt-5 sm:text-base md:text-lg">
+                Live cold-call training. Measurable results.
+              </p>
+
+              {/* CTA */}
+              <button
+                type="button"
+                className="liquid-glass mt-6 rounded-full px-6 py-3 text-sm font-medium text-white transition duration-300 hover:bg-white/10 sm:mt-8 sm:px-7 sm:py-3.5"
+              >
+                Start Training
+              </button>
+            </div>
+
+            {/* Bottom stats — the two things Closer trains: the mind and the mouth */}
+            <div className="flex items-end gap-6 sm:gap-10 md:gap-16">
+              {/* Brain — read the room */}
+              <div>
+                <BrainIcon className="mb-2 h-6 w-6 text-white/60 sm:mb-3 sm:h-7 sm:w-7" />
+                <div className="text-xl font-normal text-white sm:text-2xl md:text-3xl">21 Minds</div>
+                <div className="text-xs font-light text-white/60 sm:text-sm">AI prospects to outthink</div>
+              </div>
+
+              {/* Mouth — say the right thing */}
+              <div>
+                <SpeechIcon className="mb-2 h-6 w-6 text-white/60 sm:mb-3 sm:h-7 sm:w-7" />
+                <div className="text-xl font-normal text-white sm:text-2xl md:text-3xl">Live Voice</div>
+                <div className="text-xs font-light text-white/60 sm:text-sm">Real-time call coaching</div>
+              </div>
+            </div>
+          </section>
+        </main>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+</body>
+</html>
